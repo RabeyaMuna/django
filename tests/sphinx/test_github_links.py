@@ -32,8 +32,7 @@ class GitHubLinkTests(SimpleTestCase):
 
     def test_code_locator(self):
         locator = github_links.CodeLocator.from_code(
-            """
-from a import b, c
+            """from a import b, c
 from .d import e, f as g
 
 def h():

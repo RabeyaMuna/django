@@ -5,7 +5,9 @@ from django.db.backends.base.introspection import FieldInfo as BaseFieldInfo
 from django.db.backends.base.introspection import TableInfo as BaseTableInfo
 from django.db.models import Index
 
-FieldInfo = namedtuple("FieldInfo", [*BaseFieldInfo._fields, "is_autofield", "comment"])
+FieldInfo = namedtuple(
+    "FieldInfo", [*BaseFieldInfo._fields, "is_autofield", "comment"]
+)
 TableInfo = namedtuple("TableInfo", [*BaseTableInfo._fields, "comment"])
 
 
@@ -278,10 +280,9 @@ class DatabaseIntrospection(BaseDatabaseIntrospection):
             if index not in constraints:
                 basic_index = (
                     type_ == self.index_default_access_method
-                    and
                     # '_btree' references
                     # django.contrib.postgres.indexes.BTreeIndex.suffix.
-                    not index.endswith("_btree")
+                    and not index.endswith("_btree")
                     and options is None
                 )
                 constraints[index] = {

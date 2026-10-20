@@ -220,9 +220,7 @@ test runner cannot handle it cleanly. Here is the pickling error:
 
 You should re-run this test with --parallel=1 to reproduce the failure
 with a cleaner failure message.
-""".format(
-                test, subtest, pickle_exc
-            )
+""".format(test, subtest, pickle_exc)
         )
 
     def check_picklable(self, test, err):
@@ -257,9 +255,7 @@ parallel test runner to handle this exception cleanly.
 In order to see the traceback, you should install tblib:
 
     python -m pip install tblib
-""".format(
-                        test, original_exc_txt
-                    )
+""".format(test, original_exc_txt)
                 )
             else:
                 print(
@@ -278,9 +274,7 @@ Here's the error encountered while trying to pickle the exception:
 
 You should re-run this test with the --parallel=1 option to reproduce the
 failure and get a correct traceback.
-""".format(
-                        test, original_exc_txt, pickle_exc_txt
-                    )
+""".format(test, original_exc_txt, pickle_exc_txt)
                 )
             raise
 
@@ -848,7 +842,7 @@ class DiscoverRunner:
         parser.add_argument(
             "--timing",
             action="store_true",
-            help=("Output timings, including database set up and total run time."),
+            help="Output timings, including database set up and total run time.",
         )
         parser.add_argument(
             "-k",

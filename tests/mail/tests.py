@@ -280,9 +280,9 @@ class MailTests(MailTestsMixin, SimpleTestCase):
 
         mock_set_payload.side_effect = simplified_set_payload
 
-        text = (
-            "Text heavily based in Python's text for non-ascii messages: Föö bär"
-        ).encode("iso-8859-1")
+        text = "Text heavily based in Python's text for non-ascii messages: Föö bär".encode(
+            "iso-8859-1"
+        )
         body = text.decode("ascii", errors="surrogateescape")
         message = SafeMIMEText(body, "plain", "ascii")
         mock_set_payload.assert_called_once()
@@ -1093,7 +1093,7 @@ class MailTests(MailTestsMixin, SimpleTestCase):
             Content-Type: text/plain; charset=utf-8
             Content-Transfer-Encoding: 8bit
 
-            ¡8-bit content!
+            §8-bit content!
             """
         ).encode()
         email = EmailMessage()
@@ -2505,18 +2505,14 @@ class BaseEmailBackendTests(MailTestsMixin):
         self.assertEqual(message.get("cc"), "cc@xn--4ca9at.com")
 
     def test_recipient_without_domain(self):
-        """
-        Regression test for #15042
-        """
+        """Regression test for #15042"""
         self.assertTrue(send_mail("Subject", "Content", "tester", ["django"]))
         message = self.get_the_message()
         self.assertEqual(message.get("from"), "tester")
         self.assertEqual(message.get("to"), "django")
 
     def test_lazy_addresses(self):
-        """
-        Email sending should support lazy email addresses (#24416).
-        """
+        """Email sending should support lazy email addresses (#24416)."""
         _ = gettext_lazy
         self.assertTrue(send_mail("Subject", "Content", _("tester"), [_("django")]))
         message = self.get_the_message()
@@ -2540,16 +2536,12 @@ class BaseEmailBackendTests(MailTestsMixin):
         self.assertEqual(message.get("Reply-To"), "reply")
 
     def test_close_connection(self):
-        """
-        Connection can be closed (even when not explicitly opened)
-        """
+        """Connection can be closed (even when not explicitly opened)"""
         conn = mail.get_connection(username="", password="")
         conn.close()
 
     def test_use_as_contextmanager(self):
-        """
-        The connection can be used as a contextmanager.
-        """
+        """The connection can be used as a contextmanager."""
         opened = [False]
         closed = [False]
         conn = mail.get_connection(username="", password="")
@@ -2584,9 +2576,7 @@ class LocmemBackendTests(BaseEmailBackendTests, SimpleTestCase):
         mail.outbox = []
 
     def test_locmem_shared_messages(self):
-        """
-        Make sure that the locmen backend populates the outbox.
-        """
+        """Make sure that the locmen backend populates the outbox."""
         connection = locmem.EmailBackend()
         connection2 = locmem.EmailBackend()
         email = EmailMessage(to=["to@example.com"])
@@ -2704,9 +2694,7 @@ class ConsoleBackendTests(BaseEmailBackendTests, SimpleTestCase):
         return [message_from_bytes(m.encode()) for m in messages if m]
 
     def test_console_stream_kwarg(self):
-        """
-        The console backend can be pointed at an arbitrary stream.
-        """
+        """The console backend can be pointed at an arbitrary stream."""
         s = StringIO()
         connection = mail.get_connection(
             "django.core.mail.backends.console.EmailBackend", stream=s

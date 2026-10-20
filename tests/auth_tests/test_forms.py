@@ -218,15 +218,11 @@ class BaseUserCreationFormTest(TestDataMixin, TestCase):
     @override_settings(
         AUTH_PASSWORD_VALIDATORS=[
             {
-                "NAME": (
-                    "django.contrib.auth.password_validation."
-                    "UserAttributeSimilarityValidator"
-                )
+                "NAME": "django.contrib.auth.password_validation."
+                "UserAttributeSimilarityValidator"
             },
             {
-                "NAME": (
-                    "django.contrib.auth.password_validation.MinimumLengthValidator"
-                ),
+                "NAME": "django.contrib.auth.password_validation.MinimumLengthValidator",
                 "OPTIONS": {
                     "min_length": 12,
                 },
@@ -777,15 +773,11 @@ class SetPasswordFormTest(TestDataMixin, TestCase):
     @override_settings(
         AUTH_PASSWORD_VALIDATORS=[
             {
-                "NAME": (
-                    "django.contrib.auth.password_validation."
-                    "UserAttributeSimilarityValidator"
-                )
+                "NAME": "django.contrib.auth.password_validation."
+                "UserAttributeSimilarityValidator"
             },
             {
-                "NAME": (
-                    "django.contrib.auth.password_validation.MinimumLengthValidator"
-                ),
+                "NAME": "django.contrib.auth.password_validation.MinimumLengthValidator",
                 "OPTIONS": {
                     "min_length": 12,
                 },
@@ -857,15 +849,11 @@ class SetPasswordFormTest(TestDataMixin, TestCase):
     @override_settings(
         AUTH_PASSWORD_VALIDATORS=[
             {
-                "NAME": (
-                    "django.contrib.auth.password_validation."
-                    "UserAttributeSimilarityValidator"
-                )
+                "NAME": "django.contrib.auth.password_validation."
+                "UserAttributeSimilarityValidator"
             },
             {
-                "NAME": (
-                    "django.contrib.auth.password_validation.MinimumLengthValidator"
-                ),
+                "NAME": "django.contrib.auth.password_validation.MinimumLengthValidator",
                 "OPTIONS": {
                     "min_length": 12,
                 },

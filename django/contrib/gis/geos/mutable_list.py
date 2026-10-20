@@ -73,7 +73,8 @@ class ListMixin:
         "Get the item(s) at the specified index/slice."
         if isinstance(index, slice):
             return [
-                self._get_single_external(i) for i in range(*index.indices(len(self)))
+                self._get_single_external(i)
+                for i in range(*index.indices(len(self)))
             ]
         else:
             index = self._checkindex(index)
@@ -94,7 +95,9 @@ class ListMixin:
 
         newLen = origLen - len(indexRange)
         newItems = (
-            self._get_single_internal(i) for i in range(origLen) if i not in indexRange
+            self._get_single_internal(i)
+            for i in range(origLen)
+            if i not in indexRange
         )
 
         self._rebuild(newLen, newItems)

@@ -21,7 +21,9 @@ class SelectTest(ChoiceWidgetTest):
         """
         for choices in (self.beatles, dict(self.beatles)):
             with self.subTest(choices):
-                self.check_html(self.widget(choices=choices), "beatle", "J", html=html)
+                self.check_html(
+                    self.widget(choices=choices), "beatle", "J", html=html
+                )
 
     def test_render_none(self):
         """
@@ -214,7 +216,9 @@ class SelectTest(ChoiceWidgetTest):
 
     def test_choices_unicode(self):
         self.check_html(
-            self.widget(choices=[("ŠĐĆŽćžšđ", "ŠĐabcĆŽćžšđ"), ("ćžšđ", "abcćžšđ")]),
+            self.widget(
+                choices=[("ŠĐĆŽćžšđ", "ŠĐabcĆŽćžšđ"), ("ćžšđ", "abcćžšđ")]
+            ),
             "email",
             "ŠĐĆŽćžšđ",
             html=(

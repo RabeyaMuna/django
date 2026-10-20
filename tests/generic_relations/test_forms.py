@@ -117,8 +117,7 @@ class GenericInlineFormsetTests(TestCase):
             <input type="hidden"
                 name="generic_relations-taggeditem-content_type-object_id-1-id"
                 id="id_generic_relations-taggeditem-content_type-object_id-1-id"></p>
-            """
-            % tagged_item_id,
+            """ % tagged_item_id,
         )
         lion = Animal.objects.create(common_name="Lion", latin_name="Panthera leo")
         formset = GenericFormSet(instance=lion, prefix="x")
@@ -305,9 +304,7 @@ class GenericInlineFormsetTests(TestCase):
         tags = formset.save()
         self.assertEqual([tag.tag for tag in tags], ["hunts", "roars"])
         hunts, roars = tags
-        self.assertSequenceEqual(
-            lion.tags.order_by("tag"), [hairy, hunts, roars, yellow]
-        )
+        self.assertSequenceEqual(lion.tags.order_by("tag"), [hairy, hunts, roars, yellow])
 
     def test_absolute_max(self):
         GenericFormSet = generic_inlineformset_factory(TaggedItem, absolute_max=1500)

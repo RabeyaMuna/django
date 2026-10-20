@@ -83,9 +83,7 @@ class VersionDirective(Directive):
         if len(self.arguments) > 1:
             msg = """Only one argument accepted for directive '{directive_name}::'.
             Comments should be provided as content,
-            not as an extra argument.""".format(
-                directive_name=self.name
-            )
+            not as an extra argument.""".format(directive_name=self.name)
             raise self.error(msg)
 
         env = self.state.document.settings.env

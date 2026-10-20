@@ -1909,7 +1909,7 @@ aria-describedby="id_birthday_error">
         self.assertEqual(
             f["first_name"].field.widget.attrs,
             f["last_name"].field.widget.attrs,
-            ({"class": "reuired"}, {"class": "required"}),
+            ({"class": "required"}, {"class": "required"}),
         )
         f = Person(names_required=False)
         self.assertEqual(
@@ -2248,9 +2248,7 @@ aria-describedby="id_birthday_error">
         class UserRegistration(Form):
             username = CharField(max_length=10)  # uses TextInput by default
             password = CharField(max_length=10, widget=PasswordInput)
-            realname = CharField(
-                max_length=10, widget=TextInput
-            )  # redundantly define widget, just to test
+            realname = CharField(max_length=10, widget=TextInput)  # redundantly define widget, just to test
             address = CharField()  # no max_length defined here
 
         p = UserRegistration(auto_id=False)
@@ -3631,7 +3629,9 @@ Options: <select multiple name="options" aria-invalid="true" required>
         )
 
         f = FileForm(
-            data={}, files={"file1": SimpleUploadedFile("name", b"")}, auto_id=False
+            data={},
+            files={"file1": SimpleUploadedFile("name", b"")},
+            auto_id=False,
         )
         self.assertHTMLEqual(
             f.as_table(),
@@ -3641,7 +3641,9 @@ Options: <select multiple name="options" aria-invalid="true" required>
         )
 
         f = FileForm(
-            data={}, files={"file1": "something that is not a file"}, auto_id=False
+            data={},
+            files={"file1": "something that is not a file"},
+            auto_id=False,
         )
         self.assertHTMLEqual(
             f.as_table(),
@@ -3664,7 +3666,8 @@ Options: <select multiple name="options" aria-invalid="true" required>
         self.assertTrue(f.is_valid())
 
         file1 = SimpleUploadedFile(
-            "我隻氣墊船裝滿晒鱔.txt", "मेरी मँडराने वाली नाव सर्पमीनों से भरी ह".encode()
+            "我隻氣墊船裝滿晒鱔.txt",
+            "मेरी मँडराने वाली नाव सर्पमीनों से भरी ह".encode(),
         )
         f = FileForm(data={}, files={"file1": file1}, auto_id=False)
         self.assertHTMLEqual(
@@ -5392,7 +5395,7 @@ class TemplateTests(SimpleTestCase):
         f = MyForm()
         self.assertHTMLEqual(
             f.render(),
-            '<div><label for="id_first_name">First name:</label><p>Custom Field</p>'
+            "<div><label for=\"id_first_name\">First name:</label><p>Custom Field</p>"
             '<input type="text" name="first_name" required id="id_first_name"></div>',
         )
 
@@ -5403,7 +5406,7 @@ class TemplateTests(SimpleTestCase):
         f = MyForm()
         self.assertHTMLEqual(
             f["first_name"].render(template_name="forms_tests/custom_field.html"),
-            '<label for="id_first_name">First name:</label><p>Custom Field</p>'
+            "<label for=\"id_first_name\">First name:</label><p>Custom Field</p>"
             '<input type="text" name="first_name" required id="id_first_name">',
         )
 
