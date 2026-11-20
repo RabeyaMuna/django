@@ -799,7 +799,7 @@ class ASGITest(SimpleTestCase):
                 message = await communicator.receive_output(timeout=1)
                 messages.append(message)
                 if message["type"] == "http.response.body":
-                    # If message lacks more_body=True, it should be the final one
+                    # If no more_body, it should be the final message
                     if not message.get("more_body", False):
                         break
             except asyncio.TimeoutError:
@@ -812,7 +812,7 @@ class ASGITest(SimpleTestCase):
         final_body_messages = [
             msg for msg in messages if msg["type"] == "http.response.body"
         ]
-        self.assertTrue(len(final_body_messages) >= 3)  # start + 2 chunks + final
+        self.assertTrue(len(final_body_messages) >= 3)  # start+2 chunks+final
 
         final_message = final_body_messages[-1]
         self.assertFalse(final_message.get("more_body", True))
