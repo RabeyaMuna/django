@@ -767,8 +767,8 @@ class ASGITest(SimpleTestCase):
         """
         Test that streaming responses end with explicit more_body=False signal.
 
-        Ensures compatibility with ASGI servers like Vercel that require
-        explicit signaling to finalize responses.
+        Ensures compatibility with ASGI servers like Vercel that
+        require explicit signaling to finalize responses.
         """
 
         async def streaming_generator():
